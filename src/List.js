@@ -103,11 +103,13 @@ class TodoList extends Component {
   }
 }
 
-const listElArray = document.getElementsByTagName('li');
-const propArray = [1,2,3];
-console.log(propArray);
-console.log(listElArray);
-console.log(listElArray[0]);
-//const foodRecip = listElArray.map((foodItem, index) => foodItem.text)
+const listArray = Array.from(document.getElementsByTagName('li'));
+listArray.forEach(objItem => console.log(objItem.text));
+
+const foodRecip = listArray.reduce((foodItem, index) => {
+  return [...foodItem, ...index.text]
+  },[]);
+const foodRecip2 = foodRecip.map((foodie, index) => foodie.text);
+//console.log(foodRecip);
  
 export default TodoList;
