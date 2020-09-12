@@ -41,6 +41,7 @@ class TodoList extends Component {
     };
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.searchRecipes = this.searchRecipes.bind(this);
   } addItem(e) {
     if (this._inputElement.value !== "") {
       const t = this._inputElement.value.toLowerCase();
@@ -76,6 +77,7 @@ class TodoList extends Component {
       
     e.preventDefault();
 
+
   } deleteItem(key) {
     var filteredItems = this.state.items.filter(function (item) {
       return (item.key !== key);
@@ -84,7 +86,13 @@ class TodoList extends Component {
     this.setState({
       items: filteredItems
     });
+  } searchRecipes() {
+    console.log("search");
+    const recipObjArray = this.state.items;
+    const recipArray = recipObjArray.map((foodie, index) => foodie.text)
+    const foodStr = recipArray.join(',');
   }
+
 
   render() {
     return (
@@ -96,6 +104,7 @@ class TodoList extends Component {
             </input>
             <button type="submit">add</button>
           </form>
+          <button onClick={this.searchRecipes}>search recipes</button>
         </div>
         <ListItems entries={this.state.items} delete = {this.deleteItem}/>
       </div>
@@ -103,13 +112,5 @@ class TodoList extends Component {
   }
 }
 
-const listArray = Array.from(document.getElementsByTagName('li'));
-listArray.forEach(objItem => console.log(objItem.text));
-
-const foodRecip = listArray.reduce((foodItem, index) => {
-  return [...foodItem, ...index.text]
-  },[]);
-const foodRecip2 = foodRecip.map((foodie, index) => foodie.text);
-//console.log(foodRecip);
  
 export default TodoList;
