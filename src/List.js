@@ -40,7 +40,8 @@ class TodoList extends Component {
             <button type="submit">add</button>
           </form>
         </div>
-        <ListItems entries={this.state.items}/>
+        <ListItems entries={this.state.items} 
+        delete = {this.deleteItem}/>
       </div>
     );
   }
