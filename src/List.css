@@ -25,6 +25,7 @@
 } 
 .todoListMain .theList li {
   color: #333;
+  text-align: center;
   background-color:#0066FF;
   padding: 15px;
   margin-bottom: 15px;
