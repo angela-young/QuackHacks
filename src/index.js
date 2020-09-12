@@ -1,6 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import App from "./App";
-
-ReactDOM.render(<App />, document.getElementById("root"));
+import "./index.css";
+import List from "./List.js";
+  
+var destination = document.querySelector("#container");
+  
+ReactDOM.render(
+    <div>
+        <List/>
+    </div>,
+    destination
+);
