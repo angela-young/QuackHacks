@@ -37,7 +37,8 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    items: []
+    items: [],
+    recipes: []
     };
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -91,8 +92,13 @@ class TodoList extends Component {
     const recipObjArray = this.state.items;
     const recipArray = recipObjArray.map((foodie, index) => foodie.text)
     const foodStr = recipArray.join(',');
-    let recipVar;
-  }
+    fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${foodStr}&number=5&apiKey=4809f0fb104343309fee1c9f5b6b08b7`).then(response => response.json())
+    .then(data => {
+    console.log(data)
+    this.setState({recipes: data})
+    })
+  } 
+  
 
 
   render() {
@@ -108,9 +114,11 @@ class TodoList extends Component {
           <button onClick={this.searchRecipes}>search recipes</button>
         </div>
         <ListItems entries={this.state.items} delete = {this.deleteItem}/>
-        <div>
+        <div id="recipes">
+          <h2>Possible Recipes</h2>
           <ul className="theList">
-            {this.searchRecipes().map((item => {return <li>{item}</li>})}
+          {this.state.recipes.map((recipe) => 
+          <li>{recipe.title}</li>)}
           </ul>
         </div>
       </div>
