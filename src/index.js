@@ -7,7 +7,7 @@ var destination = document.querySelector("#container");
   
 ReactDOM.render(
     <div>
-      <h1>Foods owned</h1>
+      <h1>Expiration Date</h1>
         <List/>
     </div>,
     destination
