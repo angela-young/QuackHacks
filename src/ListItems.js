@@ -5,7 +5,6 @@ class TodoItems extends Component {
     super(props);
  
     this.createTasks = this.createTasks.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
   } 
   delete(key) {
     this.props.delete(key);
@@ -14,15 +13,7 @@ class TodoItems extends Component {
     return <li onClick={() => this.delete(item.key)} 
               key={item.key}>{item.text}</li>
   }
-  deleteItem(key) {
-    var filteredItems = this.state.items.filter(function (item) {
-      return (item.key !== key);
-    });
   
-    this.setState({
-      items: filteredItems
-    });
-  }
   render() {
     var todoEntries = this.props.entries;
     var listItems = todoEntries.map(this.createTasks);

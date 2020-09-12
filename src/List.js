@@ -9,39 +9,51 @@ class TodoList extends Component {
     items: []
     };
     this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   } addItem(e) {
-  if (this._inputElement.value !== "") {
-    var newItem = {
-      text: this._inputElement.value,
-      key: Date.now()
-    };
- 
-    this.setState((prevState) => {
-      return { 
-        items: prevState.items.concat(newItem) 
+    if (this._inputElement.value !== "") {
+      var newItem = {
+        text: this._inputElement.value,
+        key: Date.now()
+        //dateDay: this.key.getDay(),
+        //dateMonth: this.key.getMonth() + 1,
+        
       };
+  
+      this.setState((prevState) => {
+        return { 
+          items: prevState.items.concat(newItem) 
+        };
+      });
+    
+      this._inputElement.value = "";
+    }
+    
+    console.log(this.state.items);
+      
+    e.preventDefault();
+  } deleteItem(key) {
+    var filteredItems = this.state.items.filter(function (item) {
+      return (item.key !== key);
     });
-   
-    this._inputElement.value = "";
+  
+    this.setState({
+      items: filteredItems
+    });
   }
-   
-  console.log(this.state.items);
-     
-  e.preventDefault();
-}
+
   render() {
     return (
       <div className="todoListMain">
         <div className="header">
           <form onSubmit={this.addItem}>
-            <input ref={ (a) => this._inputElement = a}
+            <input ref={ (a) => this._inputElement = a} type = "text"
             placeholder="enter food item">
             </input>
             <button type="submit">add</button>
           </form>
         </div>
-        <ListItems entries={this.state.items} 
-        delete = {this.deleteItem}/>
+        <ListItems entries={this.state.items} delete = {this.deleteItem}/>
       </div>
     );
   }
