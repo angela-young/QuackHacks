@@ -2,6 +2,29 @@ import React, { Component } from "react";
 import ListItems from "./ListItems.js";
 import "./List.css";
  
+const foodList = [
+    { 
+      name: "apples",
+      timeDays: 28
+    },
+    {
+      name: "eggs",
+      timeDays: 21
+    },
+    {
+      name: "breads",
+      timeDays: 4
+    },
+    {
+      name: "tomatoes",
+      timeDays: 14
+    },
+    {
+      name: "bananas",
+      timeDays: 3
+    }
+  ]
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -12,13 +35,24 @@ class TodoList extends Component {
     this.deleteItem = this.deleteItem.bind(this);
   } addItem(e) {
     if (this._inputElement.value !== "") {
+      const t = this._inputElement.value.toLowerCase();
       const day = new Date();
       day.setTime(Date.now());
+      let monthNum = day.getMonth() + 1;
+      let dayNum = day.getDate();
+      const enteredFood = foodList.find(foodItem => {return foodItem.name.includes(t)})
+      let badMonth = monthNum;
+      let badDay = dayNum + enteredFood.timeDays
+      if (dayNum + enteredFood.timeDays > 30) {
+        badMonth++;
+        badDay %= 30;
+      }
       var newItem = {
-        text: (this._inputElement.value).toLowerCase(),
+        text: t,
         key: Date.now(),
-        dateAdd: "Day Added: " + String(day.getMonth() + 1) + "/" + String(day.getDate()),
-        dateBad: "Eat by: "
+        dateAdd: "Day Added: " + String(monthNum) + "/" + String(dayNum),
+        dateBad: "Eat by: " + String(badMonth)+ "/" + String(badDay),
+        button: ""
       };
   
       this.setState((prevState) => {
