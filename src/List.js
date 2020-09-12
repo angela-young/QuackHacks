@@ -91,6 +91,7 @@ class TodoList extends Component {
     const recipObjArray = this.state.items;
     const recipArray = recipObjArray.map((foodie, index) => foodie.text)
     const foodStr = recipArray.join(',');
+    let recipVar;
   }
 
 
@@ -107,6 +108,11 @@ class TodoList extends Component {
           <button onClick={this.searchRecipes}>search recipes</button>
         </div>
         <ListItems entries={this.state.items} delete = {this.deleteItem}/>
+        <div>
+          <ul className="theList">
+            {this.searchRecipes().map((item => {return <li>{item}</li>})}
+          </ul>
+        </div>
       </div>
     );
   }
