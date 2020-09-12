@@ -12,12 +12,12 @@ class TodoList extends Component {
     this.deleteItem = this.deleteItem.bind(this);
   } addItem(e) {
     if (this._inputElement.value !== "") {
+      const day = new Date();
+      day.setTime(Date.now());
       var newItem = {
         text: this._inputElement.value,
-        key: Date.now()
-        //dateDay: this.key.getDay(),
-        //dateMonth: this.key.getMonth() + 1,
-        
+        key: Date.now(),
+        date: "Day Added: " + String(day.getDate()) + "/" + String(day.getMonth() + 1)
       };
   
       this.setState((prevState) => {
