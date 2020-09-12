@@ -17,7 +17,8 @@ class TodoList extends Component {
       var newItem = {
         text: (this._inputElement.value).toLowerCase(),
         key: Date.now(),
-        date: "Day Added: " + String(day.getMonth()) + "/" + String(day.getDay() + 1)
+        dateAdd: "Day Added: " + String(day.getMonth()) + "/" + String(day.getDay() + 1),
+        dateBad: "Eat by: "
       };
   
       this.setState((prevState) => {
