@@ -17,7 +17,7 @@ class TodoList extends Component {
       var newItem = {
         text: (this._inputElement.value).toLowerCase(),
         key: Date.now(),
-        dateAdd: "Day Added: " + String(day.getMonth()) + "/" + String(day.getDay() + 1),
+        dateAdd: "Day Added: " + String(day.getMonth() + 1) + "/" + String(day.getDay()),
         dateBad: "Eat by: "
       };
   
@@ -33,7 +33,7 @@ class TodoList extends Component {
     console.log(this.state.items);
       
     e.preventDefault();
-    
+
   } deleteItem(key) {
     var filteredItems = this.state.items.filter(function (item) {
       return (item.key !== key);
